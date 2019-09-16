@@ -5,17 +5,30 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Testtable;
+use Doctrine\ORM\EntityManagerInterface;
 
 class TestController extends AbstractController
 {
     /**
-     * @Route("/DavidLafargePokémon", name="test")
+     * @Route("/ajout_etudiant", name="test")
      */
-    public function index()
+        public function ajoutEtudiant(): Response
     {
-        return new response('Heeeeeeeeeeeeeey, salut à tous les amis ! Cest DavidLafargePokémon et aujourd hui, on se retrouve avec MissJirachi');
-        return $this->render('test/index.html.twig', [
-            'controller_name' => 'TestController',
-        ]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $etudiant = new Testtable();
+            $etudiant->setNom('David');
+            $etudiant->setPrenom('Lafarge');
+            $etudiant->setAdresse('7 rue des împots');
+            $etudiant->setAge(32);
+            
+            $entityManager->persist($etudiant);
+            
+            $entityManager->flush();
+            
+            $val = $etudiant->getId();
+            
+            return $this->render('test\testtwig.html.twig', ['etudiant' => $val]);
+        
     }
 }
