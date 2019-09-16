@@ -22,13 +22,18 @@ class TestController extends AbstractController
             $etudiant->setAdresse('7 rue des împots');
             $etudiant->setAge(32);
             
+            /*
             $entityManager->persist($etudiant);
             
             $entityManager->flush();
+             * 
+             */
             
-            $val = $etudiant->getId();
+            $etudiants = $this->getDoctrine()
+                    ->getRepository(Testtable::class)
+                    ->findAll() ;
             
-            return $this->render('test\testtwig.html.twig', ['etudiant' => $val]);
+            return $this->render('test\testtwig.html.twig', ['etudiants' => $etudiants]);
         
     }
 }

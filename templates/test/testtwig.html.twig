@@ -1,1 +1,25 @@
-Student created with ID {{ etudiant }}
+<div>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+        <th>Age</th>
+    </tr>
+    {%  for etudiant in etudiants %}
+        <tr>
+            <td>{{ etudiant.Id }}</td>
+            <td>{{ etudiant.Nom }}</td>
+            <td>{{ etudiant.Prenom }}</td>
+            <td>{{ etudiant.Adresse }}</td>
+            <td>{{ etudiant.Age }}</td>
+           
+    {% endfor %}
+    
+    </tr>
+    
+</div>
+    
+    
